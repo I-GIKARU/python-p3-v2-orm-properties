@@ -20,6 +20,42 @@ class Employee:
             f"Department ID: {self.department_id}>"
         )
 
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        if not isinstance(name, str):
+            raise ValueError("Name must be a string")
+        if len(name) == 0:
+            raise ValueError("Name must not be empty")
+        self._name = name
+
+    @property
+    def job_title(self):
+        return self._job_title
+
+    @job_title.setter
+    def job_title(self, job_title):
+        if not isinstance(job_title, str):
+            raise ValueError("Job title must be a string")
+        if len(job_title) == 0:
+            raise ValueError("Job title must not be empty")
+        self._job_title = job_title
+
+    @property
+    def department_id(self):
+        return self._department_id
+
+    @department_id.setter
+    def department_id(self, department_id):
+        if not isinstance(department_id, int):
+            raise ValueError("Department ID must be an integer")
+        if not Department.find_by_id(department_id):
+            raise ValueError("Department ID must reference a department in the database")
+        self._department_id = department_id
+
     @classmethod
     def create_table(cls):
         """ Create a new table to persist the attributes of Employee instances """

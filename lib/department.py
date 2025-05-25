@@ -15,6 +15,30 @@ class Department:
     def __repr__(self):
         return f"<Department {self.id}: {self.name}, {self.location}>"
 
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        if not isinstance(name, str):
+            raise ValueError("Name must be a string")
+        if len(name) == 0:
+            raise ValueError("Name must not be empty")
+        self._name = name
+
+    @property
+    def location(self):
+        return self._location
+
+    @location.setter
+    def location(self, location):
+        if not isinstance(location, str):
+            raise ValueError("Location must be a string")
+        if len(location) == 0:
+            raise ValueError("Location must not be empty")
+        self._location = location
+
     @classmethod
     def create_table(cls):
         """ Create a new table to persist the attributes of Department instances """
